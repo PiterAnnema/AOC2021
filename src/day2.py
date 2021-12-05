@@ -12,9 +12,6 @@ class Position:
 	def forward(self, value):
 		self.x += value
 
-	def backward(self, value):
-		self.forward(- value)
-
 	def up(self, value):
 		self.y += value
 
