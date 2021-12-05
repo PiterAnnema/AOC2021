@@ -1,8 +1,9 @@
 import re
 from dataclasses import dataclass
-from itertools import starmap, filterfalse, chain
+from itertools import filterfalse, chain
 from typing import NamedTuple
 from collections import Counter
+from operator import __add__
 
 
 def sign(n: int) -> int:
@@ -19,8 +20,9 @@ class Point(NamedTuple):
 	x: int
 	y: int
 
-	def __add__(self, __o: object) -> object:
-		return Point(self.x + __o.x, self.y + __o.y)
+	def __add__(self, other: object) -> object:
+		return self.__class__(*map(__add__, self, other))
+
 
 
 @dataclass

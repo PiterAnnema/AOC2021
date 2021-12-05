@@ -1,4 +1,3 @@
-from dataclasses import dataclass
 import re
 
 
@@ -18,7 +17,7 @@ class Board:
 
 		return cls(cells, i + 1, j + 1)
 
-	def mark(self, number: int):
+	def mark(self, number: int) -> bool:
 		if number in self.cells:
 			row, col = self.cells.pop(number)
 			self.row_count[row] += 1
@@ -43,14 +42,7 @@ def read_bingo():
 
 
 def mark_all(number: int, boards: set[Board]) -> set[Board]:
-	winners = set()
-	for board in boards:
-		if board.mark(number):
-			winners.add(board)
-
-	return winners
-
-
+	return set(filter(lambda board: board.mark(number), boards))
 
 
 def main() -> None:
