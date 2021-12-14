@@ -3,17 +3,17 @@ from itertools import repeat
 from collections import namedtuple
 
 
-Dot  = namedtuple('Dot', 'x y')
+Dot = namedtuple('Dot', 'x y')
 Fold = namedtuple('Fold', 'a c')  # axis, crease
 
 
 def read_paper() -> tuple[set[Dot], set[Fold]]:
-    dots_pattern  = re.compile(r'(\d+),(\d+)')
+    dots_pattern = re.compile(r'(\d+),(\d+)')
     folds_pattern = re.compile(r'([x,y])=(\d+)')
 
     f = open('data/day13').read()
 
-    dots  = {Dot(int(x), int(y)) for x, y in dots_pattern.findall(f)}
+    dots = {Dot(int(x), int(y)) for x, y in dots_pattern.findall(f)}
     folds = [Fold(a, int(c)) for a, c in folds_pattern.findall(f)]
 
     return dots, folds
@@ -37,18 +37,24 @@ def dots_to_str(dots: set[Dot]) -> str:
     return '\n'.join(''.join(row) for row in grid)
 
 
-
-def main() -> None:
-    # Part One
+def one():
+    '''Part One'''
     dots, folds = read_paper()
-    assert len(fold_dots(dots, folds[0])) == 706
+    return len(fold_dots(dots, folds[0]))
 
-    # Part Two
+
+def two():
+    '''Part Two'''
     dots, folds = read_paper()
     for fold in folds:
         dots = fold_dots(dots, fold)
 
-    print(dots_to_str(dots))
+    return dots_to_str(dots)
+
+
+def main() -> None:
+    print(one())
+    print(two())
 
 
 if __name__ == '__main__':

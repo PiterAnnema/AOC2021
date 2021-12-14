@@ -15,15 +15,22 @@ def offset_pairwise(iterable, n):
     return zip(a, b)
 
 
-def main() -> None:
-    # Part One
-    assert sum(starmap(__lt__, pairwise(read_input()))) == 1316
+def one():
+    '''Part One'''
+    return sum(starmap(__lt__, pairwise(read_input())))
 
-    # Part Two
+
+def two():
+    '''Part Two'''
     # Since the overlap of the windows does not affect the comparison we can just compare
     # the first and last values of the respective windows.
     # 1 + 2 + 3 < 2 + 3 + 4 is equivalent to 1 < 4
-    assert sum(starmap(__lt__, offset_pairwise(read_input(), 3))) == 1344
+    return sum(starmap(__lt__, offset_pairwise(read_input(), 3)))
+
+
+def main() -> None:
+    print(one())
+    print(two())
 
 
 if __name__ == '__main__':

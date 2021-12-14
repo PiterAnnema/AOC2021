@@ -27,17 +27,24 @@ def life_support(bitstrings, masking_function):
     return bitstrings[0]
 
 
-def main() -> None:
-    # Part One
+def one():
+    '''Part One'''
     gamma = get_gamma(read_bitstrings())
     epsilon = ~gamma
-    assert gamma.uint * epsilon.uint == 4191876
+    return gamma.uint * epsilon.uint
 
-    # Part Two
+
+def two():
+    '''Part Two'''
     oxygen = life_support(read_bitstrings(), get_gamma)
     co2 = life_support(read_bitstrings(), lambda x: ~get_gamma(x))
 
-    assert oxygen.uint * co2.uint == 3414905
+    return oxygen.uint * co2.uint
+
+
+def main() -> None:
+    print(one())
+    print(two())
 
 
 if __name__ == '__main__':

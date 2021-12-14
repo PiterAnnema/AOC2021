@@ -56,7 +56,8 @@ def score_two(parser: CommandParser, values: dict):
     return reduce(lambda a, b: a * 5 + b, map(values.get, parser.complete()))
 
 
-def main() -> None:
+def one():
+    '''Part One'''
     values_one = {
         ')': 3,
         ']': 57,
@@ -67,8 +68,11 @@ def main() -> None:
     parsers = map(CommandParser, read_commands())
     errors = map(CommandParser.errors, parsers)
     first_errors = filter(None, map(next, errors, repeat(None)))
-    assert sum(map(values_one.get, first_errors)) == 374061
+    return sum(map(values_one.get, first_errors))
 
+
+def two():
+    '''Part Two'''
     values_two = {
         ')': 1,
         ']': 2,
@@ -78,7 +82,12 @@ def main() -> None:
     parsers = map(CommandParser, read_commands())
     no_errors = filterfalse(lambda p: any(p.errors()), parsers)
     scores = sorted(map(score_two, no_errors, repeat(values_two)))
-    assert scores[len(scores) // 2] == 2116639949
+    return scores[len(scores) // 2]
+
+
+def main() -> None:
+    print(one())
+    print(two())
 
 
 if __name__ == '__main__':

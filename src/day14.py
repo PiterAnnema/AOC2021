@@ -24,23 +24,31 @@ def apply_steps(pairs: dict, steps: dict, freq: dict):
     return new_pairs
 
 
-
-def main() -> None:
+def one():
+    '''Part One'''
     template, steps = read_template()
-
     freq = Counter(template)
     pairs = Counter(pairwise(template))
 
-    # Part One
     for _ in range(10):
         pairs = apply_steps(pairs, steps, freq)
-    assert max(freq.values()) - min(freq.values()) == 2194
+    return max(freq.values()) - min(freq.values())
 
-    # Part ~Two
-    for _ in range(30):
+
+def two():
+    '''Part Two'''
+    template, steps = read_template()
+    freq = Counter(template)
+    pairs = Counter(pairwise(template))
+
+    for _ in range(40):
         pairs = apply_steps(pairs, steps, freq)
-    assert max(freq.values()) - min(freq.values()) == 2360298895777
+    return max(freq.values()) - min(freq.values())
 
+
+def main() -> None:
+    print(one())
+    print(two())
 
 
 if __name__ == '__main__':

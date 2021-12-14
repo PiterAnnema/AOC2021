@@ -25,12 +25,14 @@ def solve_entry(entry_in, entry_out, overlap, segments):
     return solution
 
 
-def main() -> None:
-    # Part One
-    assert sum(sum(len(digit) in [2, 3, 4, 7] for digit in entry_out)
-               for _, entry_out in read_entries()) == 383
+def one():
+    '''Part One'''
+    return sum(sum(len(digit) in [2, 3, 4, 7] for digit in entry_out)
+               for _, entry_out in read_entries())
 
-    # Part Two
+
+def two():
+    '''Part Two'''
     segments = list(map(set, ['abcefg', 'cf', 'acdeg', 'acdfg',
                     'bcdf', 'abdfg', 'abdefg', 'acf', 'abcdefg', 'abcdfg']))
 
@@ -43,7 +45,12 @@ def main() -> None:
 
         sm += int(''.join(str(solution[frozenset(d)]) for d in entry_out))
 
-    assert sm == 998900
+    return sm
+
+
+def main() -> None:
+    print(one())
+    print(two())
 
 
 if __name__ == '__main__':

@@ -44,8 +44,8 @@ def mark_all(number: int, boards: set[Board]) -> set[Board]:
     return set(filter(lambda board: board.mark(number), boards))
 
 
-def main() -> None:
-    # Part One
+def one():
+    '''Part One'''
     numbers, boards = read_bingo()
     for number in numbers:
         winners = mark_all(number, boards)
@@ -53,9 +53,11 @@ def main() -> None:
             winner = winners.pop()
             break
 
-    assert sum(winner.cells) * number == 58838
+    return sum(winner.cells) * number
 
-    # Part Two
+
+def two():
+    '''Part Two'''
     numbers, boards = read_bingo()
     for number in numbers:
         winners = mark_all(number, boards)
@@ -66,7 +68,12 @@ def main() -> None:
 
         boards -= winners
 
-    assert sum(loser.cells) * number == 6256
+    return sum(loser.cells) * number
+
+
+def main() -> None:
+    print(one())
+    print(two())
 
 
 if __name__ == '__main__':

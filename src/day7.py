@@ -20,17 +20,28 @@ def last_desc(iterable: Iterable[int]) -> int | None:
             return c
 
 
-def main() -> None:
+def one():
+    '''Part One'''
     crabs = read_positions()
     maxpos = max(crabs)
     def fuel_one(crab, pos): return abs(crab - pos)
-    assert last_desc((total_fuel(fuel_one, crabs, pos)
-                     for pos in range(maxpos))) == 336120
+    return last_desc((total_fuel(fuel_one, crabs, pos)
+                     for pos in range(maxpos)))
 
+
+def two():
+    '''Part Two'''
+    crabs = read_positions()
+    maxpos = max(crabs)
     def intsum(n): return n * (n + 1) // 2
-    def fuel_two(crab, pos): return intsum(fuel_one(crab, pos))
-    assert last_desc((total_fuel(fuel_two, crabs, pos)
-                     for pos in range(maxpos))) == 96864235
+    def fuel_two(crab, pos): return intsum(abs(crab - pos))
+    return last_desc((total_fuel(fuel_two, crabs, pos)
+                     for pos in range(maxpos)))
+
+
+def main() -> None:
+    print(one())
+    print(two())
 
 
 if __name__ == '__main__':

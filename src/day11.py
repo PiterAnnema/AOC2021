@@ -49,14 +49,22 @@ def step_octopi(octopi: dict[Octopus]):
         yield flash_count
 
 
-def main() -> None:
-    # Part One
+def one():
+    '''Part One'''
     octopi = read_octopi()
-    assert sum(islice(step_octopi(octopi), 100)) == 1632
+    return sum(islice(step_octopi(octopi), 100))
 
-    # Part Two
+
+def two():
+    '''Part Two'''
     octopi = read_octopi()
-    assert len(list(takewhile(lambda f: f != len(octopi), step_octopi(octopi)))) + 1 == 303
+    return len(list(takewhile(lambda f: f != len(
+        octopi), step_octopi(octopi)))) + 1
+
+
+def main() -> None:
+    print(one())
+    print(two())
 
 
 if __name__ == '__main__':

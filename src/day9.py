@@ -45,17 +45,27 @@ def read_heightmap():
     return list(nodes.values())
 
 
-def main() -> None:
-    nodes = read_heightmap()
-    minima = list(filter(Node.is_local_min, nodes))
+def get_minima(nodes: list[Node]) -> list[Node]:
+    return list(filter(Node.is_local_min, nodes))
 
-    # Part One
-    assert sum(node.height for node in minima) + len(minima) == 575
 
-    # Part Two
+def one():
+    '''Part One'''
+    minima = get_minima(read_heightmap())
+    return sum(node.height for node in minima) + len(minima)
+
+
+def two():
+    '''Part Two'''
+    minima = get_minima(read_heightmap())
     sorted_basins = sorted((len(list(node.get_basin()))
                            for node in minima), reverse=True)
-    assert reduce(__mul__, sorted_basins[:3]) == 1019700
+    return reduce(__mul__, sorted_basins[:3])
+
+
+def main() -> None:
+    print(one())
+    print(two())
 
 
 if __name__ == '__main__':

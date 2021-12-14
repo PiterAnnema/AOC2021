@@ -34,12 +34,19 @@ def find_paths(caves: dict[set], curr: str, double_visit: bool, path: list[str])
         yield from find_paths(caves, cave, double_visit, path)
 
 
-def main() -> None:
-    # Part One
-    assert len(list(find_paths(read_caves(), 'start', False, []))) == 4659
+def one():
+    '''Part One'''
+    return len(list(find_paths(read_caves(), 'start', False, [])))
 
-    # Part Two
-    assert len(list(find_paths(read_caves(), 'start', True, []))) == 148962
+
+def two():
+    '''Part Two'''
+    return len(list(find_paths(read_caves(), 'start', True, [])))
+
+
+def main() -> None:
+    print(one())
+    print(two())
 
 
 if __name__ == '__main__':

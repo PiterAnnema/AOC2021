@@ -44,16 +44,23 @@ def execute_commands(commands, pos):
         getattr(pos, command)(value)
 
 
-def main() -> None:
-    # Part One
+def one():
+    '''Part One'''
     pos = Position()
     execute_commands(read_commands(), pos)
     assert pos.x * pos.depth == 1714680
 
-    # Part Two
+
+def two():
+    '''Part Two'''
     pos = AimedPosition()
     execute_commands(read_commands(), pos)
     assert pos.x * pos.depth == 1963088820
+
+
+def main() -> None:
+    print(one())
+    print(two())
 
 
 if __name__ == '__main__':

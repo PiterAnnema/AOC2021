@@ -60,16 +60,25 @@ def read_segments():
             yield Segment(Point(*map(int, start)), Point(*map(int, end)))
 
 
-def main() -> None:
-    # Part One
+def one():
+    '''Part One'''
     segments = filterfalse(Segment.is_diagonal, read_segments())
     covered = Counter(chain(*map(Segment.covers, segments)))
-    assert sum(map(lambda n: n > 1, covered.values())) == 4993
+    return sum(map(lambda n: n > 1, covered.values()))
 
-    # Part Two
+
+
+def two():
+    '''Part Two'''
     segments = read_segments()
     covered = Counter(chain(*map(Segment.covers, segments)))
-    assert sum(map(lambda n: n > 1, covered.values())) == 21101
+    return sum(map(lambda n: n > 1, covered.values()))
+
+
+
+def main() -> None:
+    print(one())
+    print(two())
 
 
 if __name__ == '__main__':
