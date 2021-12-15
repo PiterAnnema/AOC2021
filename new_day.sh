@@ -13,3 +13,7 @@ else
     echo "Copying test file $TEST_OUT"
 	sed "s/x/$1/g" template/test_dayx.py > "$TEST_OUT"
 fi
+
+code -a "$SRC_OUT"
+code -a "$TEST_OUT"
+code -a "data/day$1_ex"
