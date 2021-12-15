@@ -1,3 +1,8 @@
+def read_():
+    with open('data/day$1_ex') as f:
+        pass
+
+
 def one():
     '''Part One'''
     pass

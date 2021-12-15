@@ -1,4 +1,4 @@
-from src.dayx import one, two
+from src.day$1 import one, two
 
 
 def test_one():
